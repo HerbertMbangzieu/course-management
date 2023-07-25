@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absence;
+use App\Models\Logbook;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AbsenceController extends Controller
@@ -22,9 +24,10 @@ class AbsenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Logbook $logbook)
     {
-        //
+        return view('absences.create', compact('logbook'));
+
     }
 
     /**
@@ -33,10 +36,23 @@ class AbsenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Student $student, Logbook $logbook)
     {
-        //
+        $absence = new Absence();
+        $absence->student_id = $student->id;
+        $absence->logbook_id = $logbook->id;
+        $absence->save();
+        return redirect('absences/create/'.$logbook->id);
     }
+
+    public function unstore(Student $student, Logbook $logbook)
+    {
+        $absence = Absence::where(['student_id'=>$student->id, 'logbook_id'=>$logbook->id])->first();
+        $absence->delete();
+        return redirect('absences/create/'.$logbook->id);
+    }
+
+
 
     /**
      * Display the specified resource.

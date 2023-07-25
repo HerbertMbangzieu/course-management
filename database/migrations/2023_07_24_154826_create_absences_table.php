@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->id();
+            $table->integer('student_id');
+            $table->integer('specialty_id');
             $table->timestamps();
         });
     }

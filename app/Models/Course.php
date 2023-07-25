@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Lecturer;
 use App\Models\Specialty;
+use App\Models\Logbooks;
 
 class Course extends Model
 {
@@ -19,6 +20,12 @@ class Course extends Model
     public function specialty(){
         return $this->belongsTo(Specialty::class);
     }
+
+    public function logbooks(){
+        return $this->hasMany(Logbook::class);
+    }
+
+
 
 
 }

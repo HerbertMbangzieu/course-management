@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LogbookController;
+use App\Http\Controllers\AbsenceController;
+
 
 use App\Models\Lecturer;
 use App\Models\Course;
 use App\Models\Specialty;
+use App\Models\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,15 @@ Route::post('/lecturer', [LecturerController::class,'login']);
 Route::get('/lecturer/{lecturer}', [LecturerController::class,'show']);
 
 Route::get('/courses/{lecturer}', [CourseController::class,'index']);
+Route::get('/courses/show/{course}', [CourseController::class,'show']);
 
 Route::get('/logbooks/create/{course}',[LogbookController::class, 'create']);
+Route::get('/logbooks/show/{course}',[LogbookController::class, 'show']);
+Route::post('/logbooks/store/{course}',[LogbookController::class, 'store']);
+
+Route::get('/absences/create/{logbook}',[AbsenceController::class, 'create']);
+Route::get('/absences/store/{student}/{logbook}',[AbsenceController::class, 'store']);
+Route::get('/absences/unstore/{student}/{logbook}',[AbsenceController::class, 'unstore']);
 
 
 
@@ -144,4 +154,101 @@ Route::get('/addCourses', function () {
 
 });
 
+Route::get('/addStudents', function(){
+    $student = new Student;
+    $student->name = 'Anatole Abega';
+    $student->specialty_id = 1;
+    $student->save();
 
+    $student = new Student();
+    $student->name = 'Ann Achu';
+    $student->specialty_id = 1;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Brice Bomda';
+    $student->specialty_id = 1;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Charles Choupo';
+    $student->specialty_id = 1;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Daniela Domba';
+    $student->specialty_id = 1;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Kevin Kola';
+    $student->specialty_id = 2;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Lena Lando';
+    $student->specialty_id = 2;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Maryam Mamadou';
+    $student->specialty_id = 2;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Arnold Ayissi';
+    $student->specialty_id = 2;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Norbert Netta';
+    $student->specialty_id = 2;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Oliver Oyono';
+    $student->specialty_id = 3;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Patricia Pangop';
+    $student->specialty_id = 3;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Ulrich Umete';
+    $student->specialty_id = 3;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Vivian Voufack';
+    $student->specialty_id = 3;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Zephyrin Zebaze';
+    $student->specialty_id = 3;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Elise Enama';
+    $student->specialty_id = 4;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Frederick Fankam';
+    $student->specialty_id = 4;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Ghislain Gaye';
+    $student->specialty_id = 4;
+    $student->save();
+
+    $student = new Student;
+    $student->name = 'Halan Hamed';
+    $student->specialty_id = 4;
+    $student->save();
+
+
+});

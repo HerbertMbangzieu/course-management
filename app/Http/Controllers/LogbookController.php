@@ -35,9 +35,17 @@ class LogbookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        //
+        $data = $request->validate([
+            'description' => 'required'
+        ]);
+        $logbook = new Logbook();
+        $logbook->description = $data["description"];
+        $logbook->course_id = $course->id;
+        $logbook->save();
+
+        return redirect('/absences/create/'.$logbook->id);
     }
 
     /**
@@ -46,9 +54,9 @@ class LogbookController extends Controller
      * @param  \App\Models\Logbook  $logbook
      * @return \Illuminate\Http\Response
      */
-    public function show(Logbook $logbook)
+    public function show(Course $course)
     {
-        //
+        return view('logbooks.show', compact('course'));
     }
 
     /**
